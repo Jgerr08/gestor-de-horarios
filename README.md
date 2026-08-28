@@ -20,10 +20,9 @@ EO(materia, dia, hora_inicio, hora_fin)
   horas_fin = []
   continuar = 1
 
-  i = 0
-
 // Ciclo que se mantiene activo mientras el usuario siga añadiendo materias.
   mientras (continuar == 1)
+    i = 0
     leer materia
     leer dia
     leer hora_inicio
