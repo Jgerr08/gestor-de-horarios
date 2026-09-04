@@ -13,7 +13,7 @@ while continuar:
     materia = input("Materia: ")
     dia = input("Día: ")
     hora_inicio = int(input("Hora inicio: "))
-    hora_fin = int(input("Hora fin: " ))
+    hora_fin = int(input("Hora fin: "))
     duracion = hora_fin - hora_inicio
     empalme = False
 
@@ -26,7 +26,7 @@ while continuar:
 
         # Se verifica que no haya empalme 
         if (dia == dias[i] and hora_inicio < horas_fin[i]
-            and hora_fin > horas_inicio[i]):
+                and hora_fin > horas_inicio[i]):
 
             print("Existe un empalme en el horario")
             empalme = True
@@ -48,5 +48,5 @@ print("El número de materias inscritas es de:", contador)
 print("Detalles de tu horario:")
 
 for m in range(len(materias)):
-    print(f"Materia: {materias[m]}| Día: {dias[m]} \
-    | Hora de inicio: {horas_inicio[m]} | Hora de fin: {horas_fin[m]}")
+    print(f"Materia: {materias[m]} | Día: {dias[m]}"
+          f"| Hora de inicio: {horas_inicio[m]} | Hora de fin: {horas_fin[m]}")
