@@ -1,3 +1,17 @@
+def validar_horario(hora_inicio, hora_fin):
+    """
+    (uso de operadores, funciones, condicionales)
+    recibe: hora_inicio valor numérico, hora_fin valor numérico
+    calcula la duración de la materia al restar hora_fin a hora_inicio
+    comprueba que sea positiva, si la resta es mayor que 0  
+    devuelve: valor booleano (True o False)
+    """
+    duracion = hora_fin - hora_inicio
+    if duracion <= 0:
+        return False
+    return True
+
+
 # Declaración de arreglos
 materias = []
 dias = []
@@ -14,10 +28,9 @@ while continuar:
     dia = input("Día: ")
     hora_inicio = int(input("Hora inicio: "))
     hora_fin = int(input("Hora fin: "))
-    duracion = hora_fin - hora_inicio
     empalme = False
 
-    if duracion <= 0:
+    if not validar_horario(hora_inicio, hora_fin):
         print("La hora de fin debe ser mayor que la hora de inicio")
         continue
 
