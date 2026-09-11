@@ -12,6 +12,12 @@ def validar_horario(hora_inicio, hora_fin):
     return True
 
 def mostrar_horario(materias,dias,horas_inicio, horas_fin):
+    """ 
+    (uso de funciones, condicionales, ciclos)
+    recibe: arreglos de materias, dias, horas_inicio, horas_fin
+    imprime los detalles de las materias registradas mediante un bucle
+    No devuelve un valor
+    """
     for m in range(len(materias)):
         print(f"Materia: {materias[m]} | Día: {dias[m]}"
           f"| Hora de inicio: {horas_inicio[m]} | Hora de fin: {horas_fin[m]}")
