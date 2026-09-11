@@ -2,7 +2,7 @@ def validar_horario(hora_inicio, hora_fin):
     """
     (uso de operadores, funciones, condicionales)
     recibe: hora_inicio valor numérico, hora_fin valor numérico
-    calcula la duración de la materia al restar hora_fin a hora_inicio
+    calcula la duración de la materia al restar hora_inicio a hora_fin
     comprueba que sea positiva, si la resta es mayor que 0  
     devuelve: valor booleano (True o False)
     """
