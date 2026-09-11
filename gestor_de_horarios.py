@@ -11,6 +11,11 @@ def validar_horario(hora_inicio, hora_fin):
         return False
     return True
 
+def mostrar_horario(materias,dias,horas_inicio, horas_fin):
+    for m in range(len(materias)):
+        print(f"Materia: {materias[m]} | Día: {dias[m]}"
+          f"| Hora de inicio: {horas_inicio[m]} | Hora de fin: {horas_fin[m]}")
+
 
 # Declaración de arreglos
 materias = []
@@ -60,6 +65,4 @@ while continuar:
 print("El número de materias inscritas es:", contador)
 print("Detalles de tu horario:")
 
-for m in range(len(materias)):
-    print(f"Materia: {materias[m]} | Día: {dias[m]}"
-          f"| Hora de inicio: {horas_inicio[m]} | Hora de fin: {horas_fin[m]}")
+mostrar_horario(materias, dias, horas_inicio, horas_fin)
