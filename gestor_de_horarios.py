@@ -57,7 +57,7 @@ while continuar:
     respuesta = int(input("¿Desea agregar otra materia? (si = 1/no = 0)"))
     continuar = respuesta == 1 
 
-print("El número de materias inscritas es de:", contador)
+print("El número de materias inscritas es:", contador)
 print("Detalles de tu horario:")
 
 for m in range(len(materias)):
