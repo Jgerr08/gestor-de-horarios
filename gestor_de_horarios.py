@@ -11,7 +11,7 @@ def validar_horario(hora_inicio, hora_fin):
         return False
     return True
 
-def mostrar_horario(materias,dias,horas_inicio, horas_fin):
+def mostrar_horario(materias, dias,horas_inicio, horas_fin):
     """ 
     (uso de funciones, condicionales, ciclos)
     recibe: arreglos de materias, dias, horas_inicio, horas_fin
