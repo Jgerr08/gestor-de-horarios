@@ -67,16 +67,19 @@ horas_fin = []
 continuar = True
 contador = 0
 
+# Ciclo que se repite mientras el usuario quiera agregar materias
 while continuar:
     materia = input("Materia: ")
     dia = input("Día: ")
     hora_inicio = int(input("Hora inicio: "))
     hora_fin = int(input("Hora fin: "))
 
+    # Si el horario no es válido, se vuelve a pedir la materia
     if not validar_horario(hora_inicio, hora_fin):
         print("La hora de fin debe ser mayor que la hora de inicio")
         continue
 
+    # Se revisa si hay empalme con alguna materia ya registrada
     empalme = hay_empalme(materias, dia, dias, hora_inicio,
                           horas_inicio, hora_fin, horas_fin)
 

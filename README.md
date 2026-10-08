@@ -35,7 +35,7 @@ EO(materia, dia, hora_inicio, hora_fin)
       si(dia == dias[i] y hora_inicio < horas_fin[i] y hora_fin > horas_inicio[i])
 
         Imprimir("Existe un empalme en el horario")
-  
+
       i = i + 1
 
 //Si no hay empalme se añaden los datos a los arreglos correspondientes.
@@ -49,6 +49,18 @@ EO(materia, dia, hora_inicio, hora_fin)
       leer continuar
 
 EF(materias, dias, horas_inicio, horas_fin)
-  
+```
 
 
+
+## Instrucciones
+Descargar el archivo y correr en terminal con:
+
+```
+python pisa.py
+```
+
+En Mac o Linux puede ser necesario usar :
+```
+python3 pisa.py
+```
