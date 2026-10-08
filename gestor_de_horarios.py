@@ -48,9 +48,9 @@ def agregar_materias(materias, materia, dia, dias, hora_inicio,
     """
     (uso de funciones)
     recibe: listas de materias, dias, horas_inicio, horas_fin
-    y variables de materia, dia, hora_inicio, hora_fin, contador
+    y variables de materia, dia, hora_inicio, hora_fin
     agrega una materia, su día y su horario a las listas
-    correspondientes e incrementa el contador.
+    correspondientes.
     No devuelve nada
     """
     materias.append(materia)
@@ -83,9 +83,11 @@ while continuar:
     empalme = hay_empalme(materias, dia, dias, hora_inicio,
                           horas_inicio, hora_fin, horas_fin)
 
+    # Si hay empalme se avisa al usuario
     if empalme:
         print("Hay empalme entre las dos materias.")
     else:
+        # Si no hay empalme, se registra la materia
         agregar_materias(materias, materia, dia, dias, hora_inicio,
                          horas_inicio, hora_fin, horas_fin)
         contador += 1
