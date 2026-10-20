@@ -57,10 +57,10 @@ EF(materias, dias, horas_inicio, horas_fin)
 Descargar el archivo y correr en terminal con:
 
 ```
-python pisa.py
+python gestor_de_horarios.py
 ```
 
 En Mac o Linux puede ser necesario usar :
 ```
-python3 pisa.py
+python3 gestor_de_horarios.py
 ```
