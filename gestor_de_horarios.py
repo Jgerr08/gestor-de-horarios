@@ -12,57 +12,52 @@ def validar_horario(hora_inicio, hora_fin):
     return True
 
 
-def mostrar_horario(materias, dias, horas_inicio, horas_fin):
+def mostrar_horario(horario):
     """
-    (uso de funciones, condicionales, ciclos)
+    (uso de funciones, condicionales, ciclos for)
     recibe: listas de materias, dias, horas_inicio, horas_fin
     imprime los detalles de las materias registradas mediante un bucle
     No devuelve un valor
     """
-    for i in range(len(materias)):
-        print(f"Materia: {materias[i]} | Día: {dias[i]}"
-              f" | Hora de inicio: {horas_inicio[i]}"
-              f" | Hora de fin: {horas_fin[i]}")
+    for i in range(len(horario)):
+        print(f"Materia: {horario[i][0]} | Día: {horario[i][1]}"
+              f" | Hora de inicio: {horario[i][2]}"
+              f" | Hora de fin: {horario[i][3]}")
 
 
-def hay_empalme(materias, dia, dias, hora_inicio,
-                horas_inicio, hora_fin, horas_fin):
+def hay_empalme(horario, dia, hora_inicio, hora_fin):
     """
-    (uso de funciones, condicionales, ciclos)
+    (uso de funciones, condicionales, ciclos while)
     recibe: listas de materias, dias, horas_inicio, horas_fin
     y variables de dia, hora_inicio, hora_fin
     compara un día y horario específicos contra las listas de horarios
     de las materias ya registradas para verificar si se empalman.
     devuelve: valor booleano (True o False)
     """
-    for i in range(len(materias)):
-        if (dia == dias[i] and hora_inicio < horas_fin[i]
-                and hora_fin > horas_inicio[i]):
-            return True
-
+    i = 0
+    ren = len(horario)
+    while i < ren:
+            if (dia == horario[i][1] and hora_inicio < horario[i][3]
+                 and hora_fin > horario[i][2]):
+                return True
+            i+=1
     return False
 
 
-def agregar_materias(materias, materia, dia, dias, hora_inicio,
-                     horas_inicio, hora_fin, horas_fin):
+def agregar_materias(horario, materia, dia, hora_inicio, hora_fin):
     """
     (uso de funciones)
-    recibe: listas de materias, dias, horas_inicio, horas_fin
+    recibe: matriz de horario
     y variables de materia, dia, hora_inicio, hora_fin
-    agrega una materia, su día y su horario a las listas
-    correspondientes.
+    crea una fila con los datos de la materia
+    y las añade a la matriz.
     No devuelve nada
     """
-    materias.append(materia)
-    dias.append(dia)
-    horas_inicio.append(hora_inicio)
-    horas_fin.append(hora_fin)
+    lista = [materia, dia, hora_inicio, hora_fin]
+    horario.append(lista)
 
 
-materias = []
-dias = []
-horas_inicio = []
-horas_fin = []
+horario = []
 
 continuar = True
 contador = 0
@@ -80,16 +75,14 @@ while continuar:
         continue
 
     # Se revisa si hay empalme con alguna materia ya registrada
-    empalme = hay_empalme(materias, dia, dias, hora_inicio,
-                          horas_inicio, hora_fin, horas_fin)
+    empalme = hay_empalme(horario, dia, hora_inicio, hora_fin)
 
     # Si hay empalme se avisa al usuario
     if empalme:
         print("Hay empalme entre las dos materias.")
     else:
         # Si no hay empalme, se registra la materia
-        agregar_materias(materias, materia, dia, dias, hora_inicio,
-                         horas_inicio, hora_fin, horas_fin)
+        agregar_materias(horario, materia, dia, hora_inicio, hora_fin)
         contador += 1
 
     respuesta = int(input("¿Desea agregar otra materia? (si = 1/no = 0)"))
@@ -98,4 +91,4 @@ while continuar:
 print("El número de materias inscritas es:", contador)
 print("Detalles de tu horario:")
 
-mostrar_horario(materias, dias, horas_inicio, horas_fin)
+mostrar_horario(horario)
