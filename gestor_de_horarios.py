@@ -1,3 +1,83 @@
+def quitar_acentos(texto):
+    """
+    (manipulación de cadenas)
+    recibe: cadena de texto
+    reemplaza aquellas vocales que tienen acento por esas
+    mismas letras sin acento
+    devuelve:la cadena sin acentos (str)
+    """
+    reemplazar = "áéíóú"
+    cambio = "aeiou"
+    i = 0
+    for elem in reemplazar:
+        texto = texto.replace(elem, cambio[i])
+        i+=1
+    return texto
+
+def validar_dia(texto):
+    """
+    (manipulación de cadenas)
+    recibe: cadena de texto
+    normaliza el texto recibido y lo compara
+    con los días habiles de la lista
+    para comprobar que sea valido
+    devuelve: valor booleano (True o False)
+    """
+    dias = ["lunes", "martes", "miercoles", "jueves", "viernes"]
+    texto = normalizar_dia(texto)
+    for elem in dias:
+        if texto == elem:
+            return True
+    return False
+
+
+def quitar_espacios(texto):
+    """
+    (manipulación de cadenas)
+    recibe: cadena de texto
+    elimina los espacios en blanco al principio y al fin
+    de la cadena
+    devuelve: la cadena sin espacios al inicio ni al final
+    """
+    return texto.strip()
+
+def minusculas(texto):
+    """
+    (manipulación de cadenas)
+    recibe: cadena de texto
+    convierte el texto a minusculas
+    devuelve: la cadena con todas las letras del texto
+    en minusculas
+    """
+    return texto.lower()
+
+def normalizar_dia(texto):
+    """
+    (manipulación de cadenas)
+    recibe: nombre del dia escrito por el usuario
+    convierte el texto a minusculas, le quita los espacios
+    en blanco que puede llegar a haber y quita acentos
+    devuelve: el nombre del dia normalizado
+    """
+    texto = minusculas(texto)
+    texto = quitar_espacios(texto)
+    texto = quitar_acentos(texto)
+    return texto
+
+def formatear_materia(materia):
+    """
+    (manipulación de cadenas)
+    recibe:  nombre de la materia escrito por el usuario
+    quita espacios que sobran y pone mayúscula al inicio de cada palabra
+    devuelve: el nombre de la materia formateado
+    """
+    materia = materia.strip()
+    materia = materia.split()
+    materia = " ".join(materia)
+    materia = materia.title()
+    return materia
+
+
 def validar_horario(hora_inicio, hora_fin):
     """
     (uso de operadores, funciones, condicionales)
@@ -14,20 +94,28 @@ def validar_horario(hora_inicio, hora_fin):
 
 def mostrar_horario(horario):
     """
-    (uso de funciones, condicionales, ciclos for)
+    (uso de funciones, condicionales, ciclos)
     recibe: listas de materias, dias, horas_inicio, horas_fin
     imprime los detalles de las materias registradas mediante un bucle
     No devuelve un valor
     """
-    for i in range(len(horario)):
-        print(f"Materia: {horario[i][0]} | Día: {horario[i][1]}"
-              f" | Hora de inicio: {horario[i][2]}"
-              f" | Hora de fin: {horario[i][3]}")
+    dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+    i = 0
+    while i < len(dias):
+        j = 0
+        while j < len(horario):
+            if normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
+                print(f"Materia: {formatear_materia(horario[j][0])} | Día: {dias[i]}"
+                f" | Hora de inicio: {horario[j][2]}"
+                f" | Hora de fin: {horario[j][3]}")
+            j+=1
+        i+=1
+
 
 
 def hay_empalme(horario, dia, hora_inicio, hora_fin):
     """
-    (uso de funciones, condicionales, ciclos while)
+    (uso de funciones, condicionales, ciclos)
     recibe: listas de materias, dias, horas_inicio, horas_fin
     y variables de dia, hora_inicio, hora_fin
     compara un día y horario específicos contra las listas de horarios
@@ -37,7 +125,7 @@ def hay_empalme(horario, dia, hora_inicio, hora_fin):
     i = 0
     ren = len(horario)
     while i < ren:
-            if (dia == horario[i][1] and hora_inicio < horario[i][3]
+            if (normalizar_dia(dia) == normalizar_dia(horario[i][1]) and hora_inicio < horario[i][3]
                  and hora_fin > horario[i][2]):
                 return True
             i+=1
@@ -50,7 +138,7 @@ def agregar_materias(horario, materia, dia, hora_inicio, hora_fin):
     recibe: matriz de horario
     y variables de materia, dia, hora_inicio, hora_fin
     crea una fila con los datos de la materia
-    y las añade a la matriz.
+    y la añade a la matriz.
     No devuelve nada
     """
     lista = [materia, dia, hora_inicio, hora_fin]
@@ -66,6 +154,11 @@ contador = 0
 while continuar:
     materia = input("Materia: ")
     dia = input("Día: ")
+
+    while not validar_dia(dia):
+        print("Día inválido. Escribe un día de lunes a viernes.")
+        dia = input("Día: ")
+
     hora_inicio = int(input("Hora inicio: "))
     hora_fin = int(input("Hora fin: "))
 
