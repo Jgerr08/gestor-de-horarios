@@ -1,22 +1,8 @@
-def quitar_acentos(texto):
-    """
-    (manipulación de cadenas)
-    recibe: cadena de texto
-    reemplaza aquellas vocales que tienen acento por esas
-    mismas letras sin acento
-    devuelve:la cadena sin acentos (str)
-    """
-    reemplazar = "áéíóú"
-    cambio = "aeiou"
-    i = 0
-    for elem in reemplazar:
-        texto = texto.replace(elem, cambio[i])
-        i+=1
-    return texto
+import os
 
 def validar_dia(texto):
     """
-    (manipulación de cadenas)
+    (uso de funciones, manipulación de cadenas)
     recibe: cadena de texto
     normaliza el texto recibido y lo compara
     con los días habiles de la lista
@@ -30,20 +16,62 @@ def validar_dia(texto):
             return True
     return False
 
+def pedir_materias():
+    """
+    (uso de funciones, ciclos)
+    recibe: nada
+    pide al usuario los detalles de la materia a agregar.
+    Usa ciclos while para volver a pedir el día si
+    no es de lunes a viernes y las horas si la de fin no
+    es mayor que la de inicio
+    devuelve: materia, dia, hora_inicio, hora_fin (int)
+    """
+    materia = input("Materia: ")
+    dia = input("Día: ")
+    while not validar_dia(dia):
+        print("Día inválido. Escribe un día de lunes a viernes.")
+        dia = input("Día: ")
+
+    hora_inicio = int(input("Hora inicio: "))
+    hora_fin = int(input("Hora fin: "))
+
+    while not validar_horario(hora_inicio, hora_fin):
+        print("La hora de fin debe ser mayor que la hora de inicio")
+        hora_inicio = int(input("Hora inicio: "))
+        hora_fin = int(input("Hora fin: "))
+
+    return materia, dia, hora_inicio, hora_fin
+
+def quitar_acentos(texto):
+    """
+    (uso de funciones, manipulación de cadenas)
+    recibe: cadena de texto
+    reemplaza aquellas vocales que tienen acento por esas
+    mismas letras sin acento
+    devuelve:la cadena sin acentos (str)
+    """
+    reemplazar = "áéíóú"
+    cambio = "aeiou"
+    i = 0
+    for elem in reemplazar:
+        texto = texto.replace(elem, cambio[i])
+        i+=1
+    return texto
 
 def quitar_espacios(texto):
     """
-    (manipulación de cadenas)
+    (uso de funciones, manipulacion de cadenas)
     recibe: cadena de texto
-    elimina los espacios en blanco al principio y al fin
+    elimina los espacios en blanco al principio y al final
     de la cadena
-    devuelve: la cadena sin espacios al inicio ni al final
+    devuelve: la cadena sin espacios al inicio o al final
     """
     return texto.strip()
 
+
 def minusculas(texto):
     """
-    (manipulación de cadenas)
+    (uso de funciones, manipulacion de cadenas)
     recibe: cadena de texto
     convierte el texto a minusculas
     devuelve: la cadena con todas las letras del texto
@@ -53,7 +81,7 @@ def minusculas(texto):
 
 def normalizar_dia(texto):
     """
-    (manipulación de cadenas)
+    (uso de funciones, manipulación de cadenas)
     recibe: nombre del dia escrito por el usuario
     convierte el texto a minusculas, le quita los espacios
     en blanco que puede llegar a haber y quita acentos
@@ -66,12 +94,11 @@ def normalizar_dia(texto):
 
 def formatear_materia(materia):
     """
-    (manipulación de cadenas)
+    (uso de funciones, manipulación de cadenas)
     recibe:  nombre de la materia escrito por el usuario
     quita espacios que sobran y pone mayúscula al inicio de cada palabra
     devuelve: el nombre de la materia formateado
     """
-    materia = materia.strip()
     materia = materia.split()
     materia = " ".join(materia)
     materia = materia.title()
@@ -101,17 +128,49 @@ def mostrar_horario(horario):
     """
     dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
     i = 0
+    print("Materia\t\tDía\t\tHora inicio\tHora fin")
     while i < len(dias):
         j = 0
         while j < len(horario):
             if normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
-                print(f"Materia: {formatear_materia(horario[j][0])} | Día: {dias[i]}"
-                f" | Hora de inicio: {horario[j][2]}"
-                f" | Hora de fin: {horario[j][3]}")
+                print(f"{formatear_materia(horario[j][0])}\t\t "
+                f"{dias[i]}\t\t"
+                f"{horario[j][2]}\t\t"
+                f"{horario[j][3]}")
             j+=1
         i+=1
 
+def mostrar_horario_enumerado(horario):
+    """
+    (uso de funciones, condicionales, ciclos)
+    recibe: listas de materias, dias, horas_inicio, horas_fin
+    imprime los detalles de las materias registradas mediante un bucle
+    No devuelve un valor
+    """
+    dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+    i = 0
+    print("Posicion\tMateria\t\tDía\t\tHora inicio\tHora fin")
+    while i < len(dias):
+        j = 0
+        while j < len(horario):
+            if normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
+                print(f"{j+1}\t\t"
+                f"{formatear_materia(horario[j][0])}\t\t"
+                f"{dias[i]}\t\t"
+                f"{horario[j][2]}\t\t"
+                f"{horario[j][3]}")
+            j+=1
+        i+=1
 
+def existe_archivo(nombre):
+    """
+    (uso de funciones, rutas)
+    recibe: el nombre del archivo
+    verifica si el archivo existe en la
+    carpeta donde se ejecuta el programa
+    devuelve: valor booleano (True o False)
+    """
+    return os.path.exists(nombre)
 
 def hay_empalme(horario, dia, hora_inicio, hora_fin):
     """
@@ -125,16 +184,16 @@ def hay_empalme(horario, dia, hora_inicio, hora_fin):
     i = 0
     ren = len(horario)
     while i < ren:
-            if (normalizar_dia(dia) == normalizar_dia(horario[i][1]) and hora_inicio < horario[i][3]
-                 and hora_fin > horario[i][2]):
+        if (normalizar_dia(dia) == normalizar_dia(horario[i][1]) and hora_inicio < horario[i][3]
+            and hora_fin > horario[i][2]):
                 return True
-            i+=1
+        i+=1
     return False
 
 
 def agregar_materias(horario, materia, dia, hora_inicio, hora_fin):
     """
-    (uso de funciones)
+    (uso de funciones, listas, matrices)
     recibe: matriz de horario
     y variables de materia, dia, hora_inicio, hora_fin
     crea una fila con los datos de la materia
@@ -144,44 +203,153 @@ def agregar_materias(horario, materia, dia, hora_inicio, hora_fin):
     lista = [materia, dia, hora_inicio, hora_fin]
     horario.append(lista)
 
+def eliminar_materia(horario, pos):
+    """
+    (uso de funciones, ciclos, matrices)
+    recibe: matriz de horario y posicion
+    de la materia a eliminar
+    crea una matriz nueva y le agrega todas las filas
+    del horario excepto la que está en la posición
+    indicada
+    devuelve: una matriz nueva sin la materia eliminada
+    """
+    mat = []
+    i = 0
+    while i < len(horario):
+        if i != pos - 1:
+            mat.append(horario[i])
+        i += 1
+    return mat
+
+def guardar_horario(horario, nombre):
+    """
+    (uso de funciones, condicionales, ciclos, archivos)
+    recibe: matriz de horario, cadena de nombre
+    crea un archivo con el nombre que recibe
+    como parámetro y lo llena a partir de los
+    datos que tiene la matriz de horario usando
+    ciclos while, le pone comas para que sea del
+    estilo csv
+    No devuelve nada
+    """
+    dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+    nombre = nombre.replace(".txt", "")
+    archivo = open(f"{nombre}.txt", "w")
+    i = 0
+    archivo.write("Materia,Dia,Hora_inicio,Hora_fin\n")
+    while i < len(dias):
+        j = 0
+        while j < len(horario):
+            if  normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
+                archivo.write(f"{formatear_materia(horario[j][0])},{dias[i]},"
+                              f"{horario[j][2]},{horario[j][3]}\n")
+            j+=1
+        i+=1
+    archivo.close()
+
+
+
+def cargar_horario(nombre):
+    """
+    (uso de funciones, archivos, ciclos,
+    matrices, cadenas )
+    recibe un archivo que contiene el horario
+    abre el archivo, se salta el encabezado y por cada línea
+    quita los espacios, separa los datos por comas y
+    convierte las horas a enteros, agregando cada fila
+    a una matriz
+    """
+    archivo = open(nombre, "r")
+    lineas = archivo.readlines()
+    archivo.close()
+    mat = []
+    i = 1
+    while i < len(lineas):
+        fila = quitar_espacios(lineas[i])
+        fila = fila.split(",")
+        fila[2] = int(fila[2])
+        fila[3] = int(fila[3])
+        mat.append(fila)
+        i+=1
+    return mat
 
 horario = []
-
+nombre = ""
 continuar = True
 contador = 0
 
-# Ciclo que se repite mientras el usuario quiera agregar materias
+
+# Ciclo que repite el menú del gestor de horarios hasta que el usuario decida salir
+
 while continuar:
-    materia = input("Materia: ")
-    dia = input("Día: ")
+    print("Bienvenido al Gestor de Horarios")
+    print("1: Crear un horario manualmente")
+    print("2: Cargar horario y abrirlo")
+    print("3: Eliminar materia")
+    print("0: Salir")
+    print("Seleccione una opción:")
 
-    while not validar_dia(dia):
-        print("Día inválido. Escribe un día de lunes a viernes.")
-        dia = input("Día: ")
+    opcion = int(input())
+    if opcion == 1:
+        agregar = True
 
-    hora_inicio = int(input("Hora inicio: "))
-    hora_fin = int(input("Hora fin: "))
+        # Ciclo que se repite mientras el usuario quiera agregar materias
+        while agregar:
+            materia, dia, hora_inicio, hora_fin = pedir_materias()
 
-    # Si el horario no es válido, se vuelve a pedir la materia
-    if not validar_horario(hora_inicio, hora_fin):
-        print("La hora de fin debe ser mayor que la hora de inicio")
-        continue
+            # Se revisa si hay empalme con alguna materia ya registrada
+            empalme = hay_empalme(horario, dia, hora_inicio, hora_fin)
 
-    # Se revisa si hay empalme con alguna materia ya registrada
-    empalme = hay_empalme(horario, dia, hora_inicio, hora_fin)
+            # Si hay empalme se avisa al usuario
+            if empalme:
+                print("Hay empalme entre las dos materias.")
+            else:
+                # Si no hay empalme, se registra la materia
+                agregar_materias(horario, materia, dia, hora_inicio, hora_fin)
+                contador += 1
 
-    # Si hay empalme se avisa al usuario
-    if empalme:
-        print("Hay empalme entre las dos materias.")
+            respuesta = int(input("¿Desea agregar otra materia? (si = 1/no = 0): "))
+            agregar = respuesta == 1
+
+        #Se pide el nombre del archivo, se guarda el horario y se muestra
+        nombre = input("¿Con qué nombre lo deseas guardar? (sin extension): ")
+        nombre = nombre.replace(".txt", "")
+        print("El numero de materias inscritas es:", contador)
+        print("Detalles de tu horario:")
+        guardar_horario(horario, nombre)
+        mostrar_horario(horario)
+
+        regresar = int(input("¿Desea regresar al menu? (si = 1/no = 0): "))
+        continuar = regresar == 1
+
+    elif opcion == 2:
+        # Pide el nombre del archivo y comprueba si existe en la ruta
+        nombre = input("Escriba el nombre del archivo: ")
+        if existe_archivo(nombre):
+            # Si el archivo existe se muestra en consola su contenido
+            horario = cargar_horario(nombre)
+            mostrar_horario(horario)
+        else:
+            print("No se encontro el archivo", nombre)
+        respuesta = int(input("¿Desea regresar al menu? (si = 1/no = 0): "))
+        continuar = respuesta == 1
+
+    elif opcion == 3:
+        # Se comprueba si la matriz de horario contiene alguna materia
+        if len(horario) > 0:
+            # Se da a elegir al usuario la materia a eliminar
+            mostrar_horario_enumerado(horario)
+            pos = int(input("Número de la materia a eliminar: "))
+            # Validacion para evitar error de indice
+            if pos >= 1 and pos <= len(horario):
+                horario = eliminar_materia(horario, pos)
+                guardar_horario(horario, nombre)
+            else:
+                print("Número inválido")
+        else:
+            print("No hay materias en el horario. Crea o carga uno primero.")
+    elif opcion == 0:
+        continuar = False
+
     else:
-        # Si no hay empalme, se registra la materia
-        agregar_materias(horario, materia, dia, hora_inicio, hora_fin)
-        contador += 1
-
-    respuesta = int(input("¿Desea agregar otra materia? (si = 1/no = 0)"))
-    continuar = respuesta == 1
-
-print("El número de materias inscritas es:", contador)
-print("Detalles de tu horario:")
-
-mostrar_horario(horario)
+        print("Opción no valida.")
