@@ -36,7 +36,8 @@ def pedir_materias():
     hora_fin = int(input("Hora fin: "))
 
     while not validar_horario(hora_inicio, hora_fin):
-        print("La hora de fin debe ser mayor que la hora de inicio")
+        print("Las horas deben ser de 7 a 22 \n" \
+             "La hora de fin debe ser mayor que la hora de inicio")
         hora_inicio = int(input("Hora inicio: "))
         hora_fin = int(input("Hora fin: "))
 
@@ -111,10 +112,13 @@ def validar_horario(hora_inicio, hora_fin):
     recibe: hora_inicio valor numérico, hora_fin valor numérico
     calcula la duración de la materia al restar hora_inicio a hora_fin
     comprueba que sea positiva, si la resta es mayor que 0
+    revisa que las horas estén entre 7 y 22.
     devuelve: valor booleano (True o False)
     """
     duracion = hora_fin - hora_inicio
     if duracion <= 0:
+        return False
+    if hora_inicio < 7 or hora_fin > 22:
         return False
     return True
 
@@ -282,12 +286,13 @@ contador = 0
 # Ciclo que repite el menú del gestor de horarios hasta que el usuario decida salir
 
 while continuar:
-    print("Bienvenido al Gestor de Horarios")
-    print("1: Crear un horario manualmente")
-    print("2: Cargar horario y abrirlo")
-    print("3: Eliminar materia")
-    print("0: Salir")
-    print("Seleccione una opción:")
+    print("Bienvenido al Gestor de Horarios \n"
+          "1: Agregar materias manualmente\n"
+          "2: Cargar horario y abrirlo\n"
+          "3: Eliminar materia\n"
+          "4: Mostrar horario actual\n"
+          "0: Salir\n"
+          "Seleccione una opción:")
 
     opcion = int(input())
     if opcion == 1:
@@ -328,6 +333,7 @@ while continuar:
         if existe_archivo(nombre):
             # Si el archivo existe se muestra en consola su contenido
             horario = cargar_horario(nombre)
+            contador = len(horario)
             mostrar_horario(horario)
         else:
             print("No se encontro el archivo", nombre)
@@ -344,10 +350,18 @@ while continuar:
             if pos >= 1 and pos <= len(horario):
                 horario = eliminar_materia(horario, pos)
                 guardar_horario(horario, nombre)
+                contador -= 1
             else:
                 print("Número inválido")
         else:
             print("No hay materias en el horario. Crea o carga uno primero.")
+    elif opcion == 4:
+        # Se muestra el horario actual si tiene materias
+        if len(horario) > 0:
+            print("El numero de materias inscritas es:", contador)
+            mostrar_horario(horario)
+        else:
+            print("No hay materias en el horario.")
     elif opcion == 0:
         continuar = False
 
