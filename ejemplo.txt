@@ -1,0 +1,13 @@
+Materia,Dia,Hora_inicio,Hora_fin
+Programacion,Lunes,8,10
+Optativa,Lunes,10,12
+Fisica,Lunes,12,15
+Calculo,Martes,12,14
+Fisica,Martes,15,17
+Mentoria,Miercoles,10,11
+Fisica,Miercoles,12,17
+Programacion,Jueves,8,10
+Optativa,Jueves,10,12
+Fisica,Jueves,12,15
+Programacion,Viernes,10,11
+Calculo,Viernes,12,14
