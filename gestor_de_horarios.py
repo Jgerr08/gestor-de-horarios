@@ -206,10 +206,9 @@ def existe_archivo(nombre):
 def hay_empalme(horario, dia, hora_inicio, hora_fin):
     """
     (uso de funciones, condicionales, ciclos)
-    recibe: listas de horario, materias, dias, horas_inicio, horas_fin
-    y variables de dia, hora_inicio, hora_fin
-    compara un dia y horario especificos contra las listas de horarios
-    de las materias ya registradas para verificar si se empalman.
+    recibe: matriz de horario, variables de dia, hora_inicio, hora_fin
+    compara un dia y horario especificos contra las materias ya registradas
+    en la matriz para verificar si se empalman.
     devuelve: valor booleano (True o False)
     """
     i = 0
@@ -345,7 +344,7 @@ while continuar:
                 contador += 1
 
             respuesta = int(input("¿Desea agregar otra materia? "
-                            "(si = 1/no = 0): "))
+                                  "(si = 1/no = 0): "))
             agregar = respuesta == 1
 
         # Se pide el nombre del archivo, se guarda el horario y se muestra
