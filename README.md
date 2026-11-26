@@ -1,10 +1,10 @@
 # Gestor de Horarios
 
 ## Contexto
-Como experiencia personal, la universidad me ha hecho cambiar muchos hábitos negativos que iba arrastrando desde etapas anteriores. Ahora, a una semana de cerrar el semestre,puedo mirar atrás y decir que lo que más cuesta cambiar es la administración del tiempo.
+Como experiencia personal, la universidad me ha hecho cambiar muchos hábitos negativos que iba arrastrando desde etapas anteriores. Ahora, a una semana de cerrar el semestre,puedo mirar atrás y decir que lo que más me costó cambiar es la administración del tiempo.
 Por eso decidí crear como proyecto un gestor de horarios, ya que la organización es un factor que influye en el éxito de un estudiante universitario y que le permite planificar sus actividades diarias y aprovechar mejor su día. Contar con una herramienta como esta que permita organizar sus actividades puede facilitar el manejo del tiempo de cualquier estudiante.
 
-En 2018 se realizó un estudio con 494 estudiantes de primer año de universidad, en donde se comparaba el manejo del tiempo de los alumnos con mejores calificaciones contra los de peores calificaciones.Como resultado, se encontraron claras diferencias a favor en el manejo del tiempo por parte de los alumnos de mejor desempeño (Garzón y Gil, 2018). Fuente: https://www.redalyc.org/journal/298/29858802008/html/
+En 2015 se realizó un estudio con 494 estudiantes de primer año de universidad, en donde se comparaba el manejo del tiempo de los alumnos con mejores calificaciones contra los de peores calificaciones.Como resultado, se encontraron claras diferencias a favor en el manejo del tiempo por parte de los alumnos de mejor desempeño (Garzón y Gil, 2018). Fuente: https://www.redalyc.org/journal/298/29858802008/html/
 
 Este programa es un gestor de horarios diseñado para ayudar a los estudiantes como yo a organizar sus actividades cotidianas eficientemente. Este se puede ejecutar en la terminal utilizando Python 3.
 
