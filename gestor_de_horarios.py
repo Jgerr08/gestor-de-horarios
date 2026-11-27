@@ -1,23 +1,6 @@
 import os
 
 
-def validar_dia(texto):
-    """
-    (uso de funciones, manipulacion de cadenas)
-    recibe: cadena de texto
-    normaliza el texto recibido y lo compara
-    con los dias habiles de la lista
-    para comprobar que sea valido
-    devuelve: valor booleano (True o False)
-    """
-    dias = ["lunes", "martes", "miercoles", "jueves", "viernes"]
-    texto = normalizar_dia(texto)
-    for elem in dias:
-        if texto == elem:
-            return True
-    return False
-
-
 def pedir_materias():
     """
     (uso de funciones, ciclos)
@@ -110,6 +93,22 @@ def formatear_materia(materia):
     materia = " ".join(materia)
     materia = materia.title()
     return materia
+
+def validar_dia(texto):
+    """
+    (uso de funciones, manipulacion de cadenas)
+    recibe: cadena de texto
+    normaliza el texto recibido y lo compara
+    con los dias habiles de la lista
+    para comprobar que sea valido
+    devuelve: valor booleano (True o False)
+    """
+    dias = ["lunes", "martes", "miercoles", "jueves", "viernes"]
+    texto = normalizar_dia(texto)
+    for elem in dias:
+        if texto == elem:
+            return True
+    return False
 
 
 def validar_horario(hora_inicio, hora_fin):
@@ -216,7 +215,7 @@ def hay_empalme(horario, dia, hora_inicio, hora_fin):
     while i < ren:
         if (normalizar_dia(dia) == normalizar_dia(horario[i][1])
             and hora_inicio < horario[i][3] and hora_fin > horario[i][2]):
-            return True
+                return True
         i += 1
     return False
 

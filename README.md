@@ -36,3 +36,6 @@ python3 gestor_de_horarios.py
 ```
 
 # Referencias
+Garzón & Gil (2018). Gestión del tiempo en alumnado universitario con diferentes niveles de rendimiento académico. https://www.redalyc.org/journal/298/29858802008/html/
+
+Python Software Foundation. (2026). os.path.exists(). Python 3.15.2 documentation. https://docs.python.org/3/library/os.path.html#os.path.exists
