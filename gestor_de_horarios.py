@@ -1,5 +1,8 @@
 import os
 
+HORA_MINIMA = 7
+HORA_MAXIMA = 22
+
 
 def pedir_materias():
     """
@@ -124,7 +127,7 @@ def validar_horario(hora_inicio, hora_fin):
     duracion = hora_fin - hora_inicio
     if duracion <= 0:
         return False
-    if hora_inicio < 7 or hora_fin > 22:
+    if hora_inicio < HORA_MINIMA or hora_fin > HORA_MAXIMA:
         return False
     return True
 
@@ -166,7 +169,7 @@ def mostrar_horario_enumerado(horario):
         j = 0
         while j < len(horario):
             if normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
-                print(f"{j+1:<16}"
+                print(f"{j + 1:<16}"
                       f"{formatear_materia(horario[j][0]):<32}"
                       f"{dias[i]:<16}"
                       f"{horario[j][2]:<16}"
@@ -311,7 +314,6 @@ def cargar_horario(nombre):
 horario = []
 nombre = ""
 continuar = True
-contador = 0
 
 
 # Ciclo que repite el menu del gestor de horarios
@@ -342,7 +344,6 @@ while continuar:
             else:
                 # Si no hay empalme, se registra la materia
                 agregar_materias(horario, materia, dia, hora_inicio, hora_fin)
-                contador += 1
 
             respuesta = int(input("¿Desea agregar otra materia? "
                                   "(si = 1/no = 0): "))
@@ -364,7 +365,6 @@ while continuar:
         if existe_archivo(nombre):
             # Si el archivo existe se muestra en consola su contenido
             horario = cargar_horario(nombre)
-            contador = len(horario)
             print("Detalles de tu horario:")
             mostrar_horario(horario)
         else:
@@ -383,8 +383,7 @@ while continuar:
                 materia = horario[pos - 1][0]
                 horario = eliminar_materia(horario, pos)
                 guardar_horario(horario, nombre)
-                print("Se eliminó la materia:", formatear_materia(materia))
-                contador -= 1
+                print("Se elimino la materia:", formatear_materia(materia))
             else:
                 print("Numero invalido")
         else:
@@ -393,7 +392,7 @@ while continuar:
         # Se muestra el horario actual si tiene materias
         if len(horario) > 0:
             horas = obtener_total_horas(horario)
-            print("El numero de materias inscritas es:", contador)
+            print("El numero de materias inscritas es:", len(horario))
             print("El numero total de horas es:", horas)
             mostrar_horario(horario)
         else:

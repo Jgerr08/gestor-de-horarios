@@ -65,9 +65,9 @@ Cambio realizado: En la función `mostrar_horario` agregué una lista con los d�
 
 Líneas de código donde se ve la corrección:
 
-139 a 151 `mostrar_horario`
+142 a 154 `mostrar_horario`
 
-161 a 175 `mostrar_horario_enumerado`
+164 a 178 `mostrar_horario_enumerado`
 
 ## Corrección 2
 
@@ -81,7 +81,7 @@ Cambio realizado: Agregué la siguiente función en donde se crea una matriz nue
 
 Líneas de código donde se ve la corrección:
 
-238 a 254
+241 a 257
 
 ## Corrección 3
 Sub-Competencia:  Manipula cadenas de forma útil (para validación, presentación y búsqueda) (avance 8)
@@ -113,9 +113,9 @@ print(f"{formatear_materia(horario[j][0]):<32}"
 
 Líneas de código donde se ve la corrección:
 
-141 a 149 `mostrar_horario(horario)`
+144 a 152 `mostrar_horario(horario)`
 
-163 a 173 `mostrar_horario_enumerado(horario)`
+166 a 176 `mostrar_horario_enumerado(horario)`
 
 
 # Referencias
