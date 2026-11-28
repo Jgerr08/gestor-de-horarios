@@ -94,6 +94,7 @@ def formatear_materia(materia):
     materia = materia.title()
     return materia
 
+
 def validar_dia(texto):
     """
     (uso de funciones, manipulacion de cadenas)
@@ -137,12 +138,12 @@ def mostrar_horario(horario):
     """
     dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
     i = 0
-    print("Materia\t\tDia\t\tHora inicio\tHora fin")
+    print(f"{'Materia':<32}{'Dia':<16}{'Hora inicio':<16}Hora fin")
     while i < len(dias):
         j = 0
         while j < len(horario):
             if normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
-                print(f"{formatear_materia(horario[j][0]):<16}"
+                print(f"{formatear_materia(horario[j][0]):<32}"
                       f"{dias[i]:<16}"
                       f"{horario[j][2]:<16}"
                       f"{horario[j][3]}")
@@ -159,16 +160,17 @@ def mostrar_horario_enumerado(horario):
     """
     dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
     i = 0
-    print("Posicion\tMateria\t\tDia\t\tHora inicio\tHora fin")
+    print(f"{'Posicion':<16}{'Materia':<32}{'Dia':<16}"
+          f"{'Hora inicio':<16}Hora fin")
     while i < len(dias):
         j = 0
         while j < len(horario):
             if normalizar_dia(dias[i]) == normalizar_dia(horario[j][1]):
                 print(f"{j+1:<16}"
-                      f"{formatear_materia(horario[j][0]):<16}"
+                      f"{formatear_materia(horario[j][0]):<32}"
                       f"{dias[i]:<16}"
                       f"{horario[j][2]:<16}"
-                      f"{horario[j][3]:<16}")
+                      f"{horario[j][3]}")
             j += 1
         i += 1
 
@@ -358,7 +360,7 @@ while continuar:
 
     elif opcion == 2:
         # Pide el nombre del archivo y comprueba si existe en la ruta
-        nombre = input("Escriba el nombre del archivo: ")
+        nombre = input("Escriba el nombre del archivo (con extension): ")
         if existe_archivo(nombre):
             # Si el archivo existe se muestra en consola su contenido
             horario = cargar_horario(nombre)
